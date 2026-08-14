@@ -188,8 +188,8 @@ CallTrackerHelper.launch = function(){
 		}
 	}
 	
-	//if(CCSE.ConfirmGameVersion(CallTrackerHelper.name, CallTrackerHelper.version, CallTrackerHelper.GameVersion)) 
-	Game.registerMod(CallTrackerHelper.name, CallTrackerHelper); //CallTrackerHelper.init();
+	if(CCSE.ConfirmGameVersion(CallTrackerHelper.name, CallTrackerHelper.version, CallTrackerHelper.GameVersion)) 
+        Game.registerMod(CallTrackerHelper.name, CallTrackerHelper); //CallTrackerHelper.init();
 }
 
 if(!CallTrackerHelper.isLoaded){
