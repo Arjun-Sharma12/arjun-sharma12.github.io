@@ -1,6 +1,5 @@
 Game.Win('Third-party');
 if(CallTrackerHelper === undefined) var CallTrackerHelper = {};
-if(typeof findThreshold == 'undefined') Game.LoadMod("https://hellopir2.github.io/cc-mods/callTracker.js");
 if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/' + (0 ? 'Beta/' : '') + 'CCSE.js');
 CallTrackerHelper.name = 'Call Tracker Helper';
 CallTrackerHelper.pic = 'https://klattmose.github.io/CookieClicker/img/timer.png';
