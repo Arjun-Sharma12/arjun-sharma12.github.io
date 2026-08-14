@@ -2,7 +2,7 @@ Game.Win('Third-party');
 if(CallTrackerHelper === undefined) var CallTrackerHelper = {};
 if(typeof CCSE == 'undefined') Game.LoadMod('https://klattmose.github.io/CookieClicker/' + (0 ? 'Beta/' : '') + 'CCSE.js');
 CallTrackerHelper.name = 'Call Tracker Helper';
-CallTrackerHelper.pic = 'https://klattmose.github.io/CookieClicker/img/timer.png';
+CallTrackerHelper.pic = 'https://github.com/kyron377333333/cookie-clicker-source-code-/blob/main/img/alchemylab.png?raw=true';
 CallTrackerHelper.version = '1.0';
 CallTrackerHelper.GameVersion = '2.058';
 
