@@ -26,6 +26,7 @@ CallTrackerHelper.launch = function(){
 			function(picframe){
 				picframe.pic = CallTrackerHelper.pic;
 				picframe.frame = 0;
+				picframe.width = 128;
 			}, 
 			CallTrackerHelper.ToggleSpecialMenu
 		);
