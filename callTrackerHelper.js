@@ -14,6 +14,7 @@ CallTrackerHelper.launch = function(){
             'News':     '#00FF00',
             'Stocks':   '#7F7FFF',
             'Redraw':   '#7F7F7F',
+			'JPL':      '#007f00',
             'default':  '#ff00ff'
         }
 
@@ -132,7 +133,6 @@ CallTrackerHelper.launch = function(){
 			}
 			
             // News
-            var buff = Game.buffs[i];
             var InsuppressiblesBarNews = document.createElement('div');
             InsuppressiblesBarNews.id = 'InsuppressiblesBarNews';
             InsuppressiblesBarNews.style.height = '12px';
@@ -150,7 +150,6 @@ CallTrackerHelper.launch = function(){
             l(InsuppressiblesBarNews.id + 'Time').textContent = Math.ceil(Game.TickerAge / Game.fps);
             
             // Stocks
-            var buff = Game.buffs[i];
             var InsuppressiblesBarStocks = document.createElement('div');
             InsuppressiblesBarStocks.id = 'InsuppressiblesBarStocks';
             InsuppressiblesBarStocks.style.height = '12px';
@@ -168,7 +167,6 @@ CallTrackerHelper.launch = function(){
             l(InsuppressiblesBarStocks.id + 'Time').textContent = Math.ceil((Game.fps * 60 - Game.Objects['Bank'].minigame.tickT) / Game.fps);
 
             // Redraw
-            var buff = Game.buffs[i];
             var InsuppressiblesBarRedraw = document.createElement('div');
             InsuppressiblesBarRedraw.id = 'InsuppressiblesBarRedraw';
             InsuppressiblesBarRedraw.style.height = '12px';
@@ -185,6 +183,24 @@ CallTrackerHelper.launch = function(){
             var redrawT = 30 - (Game.drawT % 30);
             l(InsuppressiblesBarRedraw.id + 'Bar').style.width = Math.round(redrawT * maxWidth / Game.fps) + 'px';
             l(InsuppressiblesBarRedraw.id + 'Time').textContent = Math.ceil(redrawT / Game.fps);
+
+			// JPL
+			var InsuppressiblesBarJPL = document.createElement('div');
+			InsuppressiblesBarJPL.id = 'InsuppressiblesBarJPL';
+			InsuppressiblesBarJPL.style.height = '12px';
+			InsuppressiblesBarJPL.style.margin = '0px 10px';
+			InsuppressiblesBarJPL.style.position = 'relative';
+			InsuppressiblesBarJPL.appendChild(CallTrackerHelper.bar('JPL', [{id: InsuppressiblesBarJPL.id + 'Bar'}], InsuppressiblesBarJPL.id + 'Time'));
+			InsuppressiblesBarJPL.firstChild.firstChild.id = InsuppressiblesBarJPL.id + 'Type';
+			l('InsuppressiblesBar').appendChild(InsuppressiblesBarJPL);
+			
+			InsuppressiblesBarJPL.style.display = '';
+			l(InsuppressiblesBarJPL.id + 'Type').textContent ='JPL';
+			var classColor = CallTrackerHelper.colorLookup['JPL'];
+			l(InsuppressiblesBarJPL.id + 'Bar').style.backgroundColor = classColor;
+			var jplT = 30 - (Game.T % 30);
+			l(InsuppressiblesBarJPL.id + 'Bar').style.width = Math.round(jplT * maxWidth / Game.fps) + 'px';
+			l(InsuppressiblesBarJPL.id + 'Time').textContent = Math.ceil(jplT / Game.fps);
 		}
 	}
 	
