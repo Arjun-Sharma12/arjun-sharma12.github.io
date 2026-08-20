@@ -95,6 +95,31 @@ CallTrackerHelper.launch = function(){
 
     CallTrackerHelper.Update = function(){
 		if(Game.specialTab == 'Insuppressible Timer'){
+			for(var i in Game.buffs){
+				var buff = Game.buffs[i];
+				var TimerBarBuff = document.createElement('div');
+				TimerBarBuff.id = 'TimerBarBuff' + i;
+				TimerBarBuff.style.height = '12px';
+				TimerBarBuff.style.margin = '0px 10px';
+				TimerBarBuff.style.position = 'relative';
+				TimerBarBuff.appendChild(TimerWidget.bar('', [{id: TimerBarBuff.id + 'Bar'}], TimerBarBuff.id + 'Time'));
+				TimerBarBuff.firstChild.firstChild.id = TimerBarBuff.id + 'Type';
+				l('TimerBar').appendChild(TimerBarBuff);
+				
+				TimerBarBuff.style.display = '';
+				l(TimerBarBuff.id + 'Type').textContent = buff.name;
+				var classColor = '';
+				if (typeof TimerWidget.colorLookup[Game.buffs[i].name] !== 'undefined') {
+					classColor = TimerWidget.colorLookup[Game.buffs[i].name];
+				}
+				else {
+					classColor = TimerWidget.colorLookup['default'];
+				}
+				l(TimerBarBuff.id + 'Bar').style.backgroundColor = classColor;
+				l(TimerBarBuff.id + 'Bar').style.width = Math.round(Game.buffs[i].time * maxWidth / Game.buffs[i].maxTime) + 'px';
+				l(TimerBarBuff.id + 'Time').textContent = Math.ceil(Game.buffs[i].time / Game.fps);
+			}
+			
 			var maxWidth = l('InsuppressiblesBar').getBoundingClientRect().width - 185;
 			
 			l('InsuppressiblesBar').innerHTML = '';
