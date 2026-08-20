@@ -100,6 +100,7 @@ CallTrackerHelper.launch = function(){
 			l('InsuppressiblesBar').innerHTML = '';
 
 			for(var i in Game.buffs){
+				if (i < (Game.buffs.length - 3)) continue;
 				var buff = Game.buffs[i];
 				var InsuppressiblesBarBuff = document.createElement('div');
 				InsuppressiblesBarBuff.id = 'InsuppressiblesBarBuff' + i;
