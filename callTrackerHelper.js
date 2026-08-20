@@ -101,27 +101,26 @@ CallTrackerHelper.launch = function(){
 
 			for(var i in Game.buffs){
 				var buff = Game.buffs[i];
-				var TimerBarBuff = document.createElement('div');
-				TimerBarBuff.id = 'TimerBarBuff' + i;
-				TimerBarBuff.style.height = '12px';
-				TimerBarBuff.style.margin = '0px 10px';
-				TimerBarBuff.style.position = 'relative';
-				TimerBarBuff.appendChild(TimerWidget.bar('', [{id: TimerBarBuff.id + 'Bar'}], TimerBarBuff.id + 'Time'));
-				TimerBarBuff.firstChild.firstChild.id = TimerBarBuff.id + 'Type';
-				l('TimerBar').appendChild(TimerBarBuff);
-				
-				TimerBarBuff.style.display = '';
-				l(TimerBarBuff.id + 'Type').textContent = buff.name;
+				var InsuppressiblesBarBuff = document.createElement('div');
+				InsuppressiblesBarBuff.id = 'InsuppressiblesBarBuff' + i;
+				InsuppressiblesBarBuff.style.height = '12px';
+				InsuppressiblesBarBuff.style.margin = '0px 10px';
+				InsuppressiblesBarBuff.style.position = 'relative';
+				InsuppressiblesBarBuff.appendChild(CallTrackerHelper.bar('', [{id: InsuppressiblesBarBuff.id + 'Bar'}], InsuppressiblesBarBuff.id + 'Time'));
+				InsuppressiblesBarBuff.firstChild.firstChild.id = InsuppressiblesBarBuff.id + 'Type';
+				l('InsuppressiblesBar').appendChild(InsuppressiblesBarBuff);
+				InsuppressiblesBarBuff.style.display = '';
+				l(InsuppressiblesBarBuff.id + 'Type').textContent = buff.name;
 				var classColor = '';
-				if (typeof TimerWidget.colorLookup[Game.buffs[i].name] !== 'undefined') {
-					classColor = TimerWidget.colorLookup[Game.buffs[i].name];
+				if (typeof CallTrackerHelper.colorLookup[Game.buffs[i].name] !== 'undefined') {
+					classColor = CallTrackerHelper.colorLookup[Game.buffs[i].name];
 				}
 				else {
-					classColor = TimerWidget.colorLookup['default'];
+					classColor = CallTrackerHelper.colorLookup['default'];
 				}
-				l(TimerBarBuff.id + 'Bar').style.backgroundColor = classColor;
-				l(TimerBarBuff.id + 'Bar').style.width = Math.round(Game.buffs[i].time * maxWidth / Game.buffs[i].maxTime) + 'px';
-				l(TimerBarBuff.id + 'Time').textContent = Math.ceil(Game.buffs[i].time / Game.fps);
+				l(InsuppressiblesBarBuff.id + 'Bar').style.backgroundColor = classColor;
+				l(InsuppressiblesBarBuff.id + 'Bar').style.width = Math.round(Game.buffs[i].time * maxWidth / Game.buffs[i].maxTime) + 'px';
+				l(InsuppressiblesBarBuff.id + 'Time').textContent = Math.ceil(Game.buffs[i].time / Game.fps);
 			}
 			
 			for(var key in Game.shimmerTypes){
