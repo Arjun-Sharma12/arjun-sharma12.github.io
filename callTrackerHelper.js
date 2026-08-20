@@ -94,7 +94,11 @@ CallTrackerHelper.launch = function(){
 	}
 
     CallTrackerHelper.Update = function(){
-		if(Game.specialTab == 'Insuppressible Timer'){
+		if(Game.specialTab == 'Insuppressible Timer') {
+			var maxWidth = l('InsuppressiblesBar').getBoundingClientRect().width - 185;
+			
+			l('InsuppressiblesBar').innerHTML = '';
+
 			for(var i in Game.buffs){
 				var buff = Game.buffs[i];
 				var TimerBarBuff = document.createElement('div');
@@ -119,10 +123,6 @@ CallTrackerHelper.launch = function(){
 				l(TimerBarBuff.id + 'Bar').style.width = Math.round(Game.buffs[i].time * maxWidth / Game.buffs[i].maxTime) + 'px';
 				l(TimerBarBuff.id + 'Time').textContent = Math.ceil(Game.buffs[i].time / Game.fps);
 			}
-			
-			var maxWidth = l('InsuppressiblesBar').getBoundingClientRect().width - 185;
-			
-			l('InsuppressiblesBar').innerHTML = '';
 			
 			for(var key in Game.shimmerTypes){
 				if(Game.shimmerTypes[key].spawnConditions() && Game.shimmerTypes[key].spawned == 0 && Game.shimmerTypes[key].spawnsOnTimer){
