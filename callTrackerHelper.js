@@ -243,3 +243,42 @@ if(!CallTrackerHelper.isLoaded){
 		CCSE.postLoadHooks.push(CallTrackerHelper.launch);
 	}
 }
+
+findDeorl=(seedList, depth, cloneCount, threshold, reindeer)=>{
+    let o = [];
+    (seedList ??= [Game.seed]), (depth ??= 50), (cloneCount ??= 43), (threshold ??= 0.001);
+    for (let a = 0; a < cloneCount; a++) {
+        for (var t of seedList) {
+            qvq.seedrandom(t + " clone " + a);
+            for (let i = 0; i < 20; i++) qvq.random();
+            let rands = [];
+            for (let i = 0; i < depth; i++) rands.push(qvq.random())/*, (rands[i] < 0.01 && console.log(rands[i], i+5, a))*/;
+            for (let p = 0; p < depth-3; p++) {
+                if (rands[p] < threshold) {
+		    if(reindeer) {
+			if (p > -1 && rands[p + 2] < 0.01) o.push([`seed: ${t}, spawn: ${rands[p]}, id: ${a}, call: ${p+5}`]);
+		    }
+		    else {
+                    	if (p > -1 && rands[p + 3] < 0.01) o.push([`seed: ${t}, spawn: ${rands[p]}, id: ${a}, call: ${p+5}`]);
+                    	else if (p > -1 && rands[p + 4] < 0.01) o.push([`seed: ${t}, spawn: ${rands[p]}, id: ${a}, call: ${p+5}, 1 change`]);
+		    }
+                }
+            }
+        }
+    }
+    // return "" + o.join("\n");
+    console.log("" + o.join("\n"));
+}
+
+
+
+eval('Game.HardReset=' + Game.HardReset.toString().replace(
+			`else if (bypass==1)
+{
+				Game.Prompt('<id ReallyWipeSave><h3>'+loc("Wipe save")+'</h3><div class="block">'+tinyIcon([15,5])+'<div class="line"></div>'+loc("Whoah now, are you really, <b><i>REALLY</i></b> sure you want to go through with this?<br><small>Don't say we didn't warn you!</small>")+'</div>',[[EN?'Do it!':loc("Yes"),'Game.ClosePrompt();Game.HardReset(2);','float:left'],[loc("No"),0,'float:right']]);
+			}`, `else if (bypass==1)
+			{
+                E.wipeSaveModalCount++; if (E.wipeSaveModalCount >= 1000000) Game.Win("Indecisive");
+				Game.Prompt('<id ReallyWipeSave><h3>'+loc("Wipe save")+'</h3><div class="block">'+tinyIcon([15,5])+'<div class="line"></div>'+loc("Whoah now, are you really, <b><i>REALLY</i></b> sure you want to go through with this?<br><small>Don't say we didn't warn you!</small>")+'</div>',[[EN?'Do it!':loc("Yes"),'Game.ClosePrompt();Game.HardReset(2);','float:left'],[loc("No"),0,'float:right']]);
+			}`
+));
