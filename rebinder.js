@@ -97,5 +97,9 @@
         load:function(str){
             rebindings = Parse(str);
         },
+        setRebind:function(originalKeyCode, newKeyCode) {
+            if (newKeyCode === 0) delete rebindings[originalKeyCode];
+            else rebindings[originalKeyCode] = newKeyCode;
+        }
     });
 })();
