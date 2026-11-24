@@ -19,6 +19,7 @@
         rebindings: {},
         
         init: function() {
+            const mod = this;
             let mouseX = 0;
             let mouseY = 0;
 
@@ -66,7 +67,7 @@
 
             
             document.addEventListener('keydown', function(e) {
-                const rebindedKey = this.rebindings[e.keyCode];
+                const rebindedKey = mod.rebindings[e.keyCode];
                 if (rebindedKey) {
                     e.preventDefault();
                     if (rebindedKey === 1) {
@@ -79,7 +80,7 @@
             });
             
             document.addEventListener('keyup', function(e) {
-                const rebindedKey = this.rebindings[e.keyCode];
+                const rebindedKey = mod.rebindings[e.keyCode];
                 if (rebindedKey) {
                     e.preventDefault();
                     if (rebindedKey === 1) {
@@ -92,10 +93,10 @@
             });
         },
         save:function(){
-            return Stringify(this.rebindings);
+            return JSON.stringify(this.rebindings);
         },
         load:function(str){
-            this.rebindings = Parse(str);
+            this.rebindings = JSON.parse(str);
         },
         setRebind:function(originalKeyCode, newKeyCode) {
             if (newKeyCode === 0) delete this.rebindings[originalKeyCode];
