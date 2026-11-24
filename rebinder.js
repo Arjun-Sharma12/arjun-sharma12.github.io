@@ -16,9 +16,9 @@
     Game.registerMod('RebindMod', {
         name: 'Rebind Mod',
         version: '1.0.0',
+        rebindings: {},
         
         init: function() {
-            let rebindings = {};
             let mouseX = 0;
             let mouseY = 0;
 
@@ -66,7 +66,7 @@
 
             
             document.addEventListener('keydown', function(e) {
-                const rebindedKey = rebindings[e.keyCode];
+                const rebindedKey = this.rebindings[e.keyCode];
                 if (rebindedKey) {
                     e.preventDefault();
                     if (rebindedKey === 1) {
@@ -79,11 +79,11 @@
             });
             
             document.addEventListener('keyup', function(e) {
-                const rebindedKey = rebindings[e.keyCode];
+                const rebindedKey = this.rebindings[e.keyCode];
                 if (rebindedKey) {
                     e.preventDefault();
                     if (rebindedKey === 1) {
-                        clickAtCurrentPosition();
+                        releaseAtCurrentPosition();
                         return;
                     }
                     const newEvent = new KeyboardEvent('keyup', { keyCode: rebindedKey, which: rebindedKey });
@@ -92,14 +92,14 @@
             });
         },
         save:function(){
-            return Stringify(rebindings);
+            return Stringify(this.rebindings);
         },
         load:function(str){
-            rebindings = Parse(str);
+            this.rebindings = Parse(str);
         },
         setRebind:function(originalKeyCode, newKeyCode) {
-            if (newKeyCode === 0) delete rebindings[originalKeyCode];
-            else rebindings[originalKeyCode] = newKeyCode;
+            if (newKeyCode === 0) delete this.rebindings[originalKeyCode];
+            else this.rebindings[originalKeyCode] = newKeyCode;
         }
     });
 })();
